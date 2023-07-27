@@ -52,6 +52,7 @@ function longestOnes(nums: number[], k: number): number {
  * flag = 2: j can move
  * flag = 1: j can move
  * flag = 0: i can move
+ * 自己解的
  */
 function longestSubarray(nums: number[]): number {
   let flag = 2;
@@ -80,4 +81,20 @@ function longestSubarray(nums: number[]): number {
   }
 
   return Math.max(max - 1, j - i - 1);
+};
+
+/**
+ * # 1732.
+ * @param gain 
+ */
+function largestAltitude(gain: number[]): number {
+  let highest = Math.max(gain[0],0);
+
+  for (let i = 0; i < gain.length; i++) {
+    if (gain[i - 1]) {
+      gain[i] += gain[i - 1];
+      highest = Math.max(highest, gain[i]);
+    } 
+  }
+  return highest
 };
