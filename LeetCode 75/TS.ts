@@ -29,8 +29,18 @@ function maxVowels(s: string, k: number): number {
  * @param k 
  */
 function longestOnes(nums: number[], k: number): number {
-  let zeroIndexArr: number[] = []
-  for (let i = 0; zeroIndexArr.length < k; i++) {
-    if (nums[i] == 0) zeroIndexArr.push(i)
+  let i = 0, j = 0
+
+  while (i < nums.length) {
+    if (nums[i] == 0) k--
+
+    if (k < 0) {
+      if (nums[j] == 0) k++
+      j++
+    }
+    i++
+
   }
+
+  return i - j
 };
