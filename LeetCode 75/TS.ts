@@ -44,3 +44,40 @@ function longestOnes(nums: number[], k: number): number {
 
   return i - j
 };
+
+/**
+ * # 1493.
+ * @param nums 
+ * @description
+ * flag = 2: j can move
+ * flag = 1: j can move
+ * flag = 0: i can move
+ */
+function longestSubarray(nums: number[]): number {
+  let flag = 2;
+  let i = 0, j = 0;
+  let max = 0;
+
+  while (j < nums.length) {
+    if (nums[j] == 0 && flag == 2) {
+      flag = 1;
+      j++
+    } else if (nums[j] == 0 && flag == 1) {
+      flag = 0;
+      max = Math.max(max, j - i - 1);
+    } else if (flag == 0) {
+      if (nums[i] == 0) {
+        i++
+        j++
+        flag = 1;
+      } else {
+        i++
+      }
+    }
+    else {
+      j++
+    }
+  }
+
+  return Math.max(max - 1, j - i - 1);
+};
