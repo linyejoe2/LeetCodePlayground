@@ -88,13 +88,32 @@ function longestSubarray(nums: number[]): number {
  * @param gain 
  */
 function largestAltitude(gain: number[]): number {
-  let highest = Math.max(gain[0],0);
+  let highest = Math.max(gain[0], 0);
 
   for (let i = 0; i < gain.length; i++) {
     if (gain[i - 1]) {
       gain[i] += gain[i - 1];
       highest = Math.max(highest, gain[i]);
-    } 
+    }
   }
   return highest
+};
+
+/**
+ * # 2215.
+ * @param nums1 
+ * @param nums2 
+ */
+function findDifference(nums1: number[], nums2: number[]): number[][] {
+  let map1: number[] = [], map2: number[] = [];
+
+  for (let ele of nums1) {
+    if (map1.indexOf(ele) == -1 && nums2.indexOf(ele) == -1) map1.push(ele)
+  }
+
+  for (let ele of nums2) {
+    if (map2.indexOf(ele) == -1 && nums1.indexOf(ele) == -1) map2.push(ele)
+  }
+
+  return [map1, map2]
 };
