@@ -117,3 +117,27 @@ function findDifference(nums1: number[], nums2: number[]): number[][] {
 
   return [map1, map2]
 };
+
+/**
+ * 1207. Unique Number of Occurrences
+ * @param arr 
+ * @url https://leetcode.com/problems/unique-number-of-occurrences
+ */
+function uniqueOccurrences(arr: number[]): boolean {
+  let map = new Map<number, number>()
+
+  for (let ele of arr) {
+    if (!map.has(ele)) {
+      map.set(ele, 1)
+    } else {
+      map.set(ele, map.get(ele) as number + 1)
+    }
+  }
+
+  let a = Array.from(map.values())
+
+  for (let i = 0; i < a.length; i++) {
+    if (i != a.indexOf(a[i])) return false
+  }
+  return true
+};
