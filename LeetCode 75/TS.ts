@@ -141,3 +141,30 @@ function uniqueOccurrences(arr: number[]): boolean {
   }
   return true
 };
+
+/**
+ * 1657. Determine if Two Strings Are Close
+ * @param word1 
+ * @param word2 
+ * @url https://leetcode.com/problems/determine-if-two-strings-are-close/?envType=study-plan-v2&envId=leetcode-75
+ */
+function closeStrings(word1: string, word2: string): boolean {
+  let map1 = new Map<string, number>()
+  let map2 = new Map<string, number>()
+
+  for (let ele of word1.split("")) {
+    map1.set(ele, (map1.get(ele) ?? 0) + 1)
+  }
+
+  for (let ele of word2.split("")) {
+    map2.set(ele, (map2.get(ele) ? map2.get(ele) as number : 0) + 1)
+  }
+
+  let a1 = Array.from(map1.values()).sort().join()
+  let a2 = Array.from(map2.values()).sort().join()
+
+  let s1 = Array.from(map1.keys()).sort().join()
+  let s2 = Array.from(map2.keys()).sort().join()
+
+  return(a1 == a2 && s1 == s2)
+};
